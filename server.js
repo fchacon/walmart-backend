@@ -4,8 +4,12 @@ const MongoClient = require("mongodb").MongoClient;
 const url = require("url");
 const { isIdentifier, isPalindrome } = require("./utils");
 
+// const connectionString =
+// 	"mongodb://productListUser:productListPassword@host.docker.internal:27018/admin";
+
 const connectionString =
-	"mongodb://productListUser:productListPassword@localhost:27017/admin";
+	"mongodb+srv://productListUser:productListPassword@cluster0.a2bfg.mongodb.net/admin";
+
 MongoClient.connect(
 	connectionString,
 	{
@@ -87,8 +91,9 @@ MongoClient.connect(
 				.catch((error) => console.error(error));
 		});
 
-		app.listen(3000, () => {
-			console.log("listening on 3000");
+		const port = process.env.PORT || 3000;
+		app.listen(port, () => {
+			console.log("listening on " + port);
 		});
 	}
 );
